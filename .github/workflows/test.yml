@@ -1,0 +1,40 @@
+name: Build aarch64 static binary only
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [ aarch64 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Install deps & cross compiler
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential cmake git libssl-dev pkg-config nodejs npm crossbuild-essential-arm64
+          npm install -g pnpm
+
+      - name: Build web ui
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm run web-ui:build
+
+      - name: CMake cross compile aarch64 static
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
+            -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ \
+            -DBUILD_STATIC=ON
+          cmake --build build
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: rtp2httpd-aarch64-static-bin
+          path: build/rtp2httpd
