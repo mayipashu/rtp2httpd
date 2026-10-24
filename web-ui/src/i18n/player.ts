@@ -4,7 +4,7 @@ type TranslationDict = Record<string, string>;
 
 const base: TranslationDict = {
   // Page title and headers
-  title: "rtp2httpd Player",
+  title: "IPTV Player",
   error: "Error",
   retry: "Retry",
 
@@ -146,7 +146,7 @@ const base: TranslationDict = {
 
 const zhHans: TranslationDict = {
   // 页面标题和头部
-  title: "rtp2httpd 播放器",
+  title: "IPTV播放器",
   error: "错误",
   retry: "重试",
 
@@ -288,7 +288,7 @@ const zhHans: TranslationDict = {
 // 繁體中文（偏好香港用語）
 const zhHant: TranslationDict = {
   // 頁面標題和頭部
-  title: "rtp2httpd - 播放器",
+  title: "IPTV播放器",
   error: "錯誤",
   retry: "重試",
 
