@@ -4,7 +4,7 @@ type TranslationDict = Record<string, string>;
 
 const base: TranslationDict = {
   // Page title and headers
-  title: "IPTV Player",
+  title: "IPTV播放器",
   error: "Error",
   retry: "Retry",
 
